@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html><head><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Add Car</title>
+<style>body{font-family:Arial;margin:0;background:#f2f2f2}
+.header{background:#0a2a5e;color:white;text-align:center;padding:20px}
+.menu{display:flex;gap:5px;padding:10px}
+.menu a{flex:1;text-align:center;background:#0a2a5e;color:white;padding:12px;text-decoration:none;border-radius:5px;font-size:13px}
+.menu a.active{background:#d4a017}
+.box{background:white;margin:15px;padding:20px;border-radius:10px}
+input{width:90%;padding:12px;margin:8px}
+button{background:#0a2a5e;color:white;padding:12px;width:100%;border:none;border-radius:5px}
+</style></head>
+<body>
+<div class="header"><h1>GHANA POLICE SERVICE</h1><p>ADD WANTED VEHICLE</p></div>
+<div class="menu"><a href="/">CHECK CAR</a><a href="/add" class="active">ADD CAR</a><a href="/list">VIEW LIST</a><a href="/officers">OFFICERS</a></div>
+<div class="box">
+<form method="POST">
+<input name="plate" placeholder="Plate e.g. AS 1010-10" required><br>
+<input name="owner" placeholder="Owner Name" required><br>
+<input name="reason" placeholder="Reason e.g. Stolen" required><br>
+<button>ADD TO WANTED LIST</button>
+</form>
+</div>
+</body></html>
