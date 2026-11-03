@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html><head><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Officers</title>
+<style>body{font-family:Arial;margin:0;background:#f2f2f2}
+.header{background:#0a2a5e;color:white;text-align:center;padding:20px}
+.menu{display:flex;gap:5px;padding:10px}
+.menu a{flex:1;text-align:center;background:#0a2a5e;color:white;padding:12px;text-decoration:none;border-radius:5px;font-size:13px}
+.menu a.active{background:#d4a017}
+.box{background:white;margin:15px;padding:20px;border-radius:10px}
+input{width:90%;padding:12px;margin:8px}
+button{background:#0a2a5e;color:white;padding:12px;width:100%;border:none;border-radius:5px}
+</style></head>
+<body>
+<div class="header"><h1>GHANA POLICE SERVICE</h1><p>MANAGE OFFICERS</p></div>
+<div class="menu"><a href="/">CHECK CAR</a><a href="/add">ADD CAR</a><a href="/list">VIEW LIST</a><a href="/officers" class="active">OFFICERS</a></div>
+<div class="box">
+<h3>Add New Officer</h3>
+<form method="POST">
+<input name="username" placeholder="New Username" required><br>
+<input name="password" placeholder="New Password" required><br>
+<button>ADD OFFICER</button>
+</form>
+<h3>Current Officers:</h3>
+<ul>{% for u in officers %}<li>{{ u }}</li>{% endfor %}</ul>
+</div>
+</body></html>
