@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html><head><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wanted Vehicle Checker</title>
+<style>
+body{font-family:Arial;margin:0;background:#f2f2f2}
+.header{background:#0a2a5e;color:white;text-align:center;padding:20px}
+.header h1{margin:0;font-size:22px}
+.header p{margin:5px;color:#ffd700}
+.top{background:#0a2a5e;color:white;padding:10px;display:flex;justify-content:space-between}
+.top a{color:white;text-decoration:none}
+.menu{display:flex;gap:5px;padding:10px}
+.menu a{flex:1;text-align:center;background:#0a2a5e;color:white;padding:12px;text-decoration:none;border-radius:5px;font-size:13px}
+.menu a.active{background:#d4a017}
+.box{background:white;margin:15px;padding:20px;border-radius:10px;text-align:center}
+input{width:90%;padding:12px;font-size:18px;text-align:center;text-transform:uppercase}
+button{background:#0a2a5e;color:white;padding:12px 20px;border:none;border-radius:5px;margin-top:10px;width:100%;font-size:16px}
+.wanted{background:#ffcccc;border:2px solid red;padding:15px;border-radius:10px;margin:15px;text-align:center}
+.wanted h2{color:red;margin:0}
+.ok{background:#ccffcc;border:2px solid green;padding:15px;border-radius:10px;margin:15px;text-align:center}
+</style></head>
+<body>
+<div class="header"><h1>GHANA POLICE SERVICE</h1><p>WANTED VEHICLE CHECKER</p></div>
+<div class="top"><span>Logged in as {{ user }}</span><a href="/logout">Logout</a></div>
+<div class="menu">
+<a href="/" class="active">CHECK CAR</a>
+<a href="/add">ADD CAR</a>
+<a href="/list">VIEW LIST</a>
+<a href="/officers">OFFICERS</a>
+</div>
+<div class="box">
+<h3>TYPE CAR NUMBER PLATE</h3>
+<form method="POST">
+<input name="plate" placeholder="e.g. AS 1010-10" required>
+<button>CHECK VEHICLE</button>
+</form>
+</div>
+{% if searched %}
+  {% if result %}
+  <div class="wanted">
+    <h2>⚠ WANTED!</h2>
+    <p><b>Plate:</b> {{ searched }}</p>
+    <p><b>Owner:</b> {{ result.owner }}</p>
+    <p><b>Reason:</b> {{ result.reason }}</p>
+    <p><b>DO NOT LET VEHICLE GO - CALL FOR BACKUP</b></p>
+  </div>
+  {% else %}
+  <div class="ok"><h2>✅ NOT WANTED</h2><p>{{ searched }} is clear.</p></div>
+  {% endif %}
+{% endif %}
+</body></html>
