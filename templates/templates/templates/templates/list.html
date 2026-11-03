@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html><head><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wanted List</title>
+<style>body{font-family:Arial;margin:0;background:#f2f2f2}
+.header{background:#0a2a5e;color:white;text-align:center;padding:20px}
+.menu{display:flex;gap:5px;padding:10px}
+.menu a{flex:1;text-align:center;background:#0a2a5e;color:white;padding:12px;text-decoration:none;border-radius:5px;font-size:13px}
+.menu a.active{background:#d4a017}
+.box{background:white;margin:10px;padding:15px;border-radius:10px;border-left:5px solid red}
+a.del{color:red}
+</style></head>
+<body>
+<div class="header"><h1>GHANA POLICE SERVICE</h1><p>WANTED VEHICLES LIST</p></div>
+<div class="menu"><a href="/">CHECK CAR</a><a href="/add">ADD CAR</a><a href="/list" class="active">VIEW LIST</a><a href="/officers">OFFICERS</a></div>
+{% for plate, data in wanted.items() %}
+<div class="box"><b>{{ plate }}</b><br>Owner: {{ data.owner }}<br>Reason: {{ data.reason }}<br><a class="del" href="/delete/{{ plate }}">Delete</a></div>
+{% else %}
+<p style="text-align:center">No wanted vehicles yet.</p>
+{% endfor %}
+</body></html>
