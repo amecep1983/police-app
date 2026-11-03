@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Login - Ghana Police</title>
+<style>body{font-family:Arial;background:#0a2a5e;text-align:center;color:white;padding:30px}
+.box{background:white;color:black;padding:20px;border-radius:10px;max-width:350px;margin:auto}
+input{width:90%;padding:12px;margin:8px}
+button{background:#0a2a5e;color:white;padding:12px;width:95%;border:none;border-radius:5px}
+</style></head>
+<body>
+<h1>GHANA POLICE SERVICE</h1>
+<p>WANTED VEHICLE CHECKER</p>
+<div class="box">
+<h3>OFFICER LOGIN</h3>
+{% if error %}<p style="color:red">{{ error }}</p>{% endif %}
+<form method="POST">
+<input name="username" placeholder="Username - admin" required><br>
+<input type="password" name="password" placeholder="Password - 1234" required><br>
+<button>LOGIN</button>
+</form>
+</div>
+</body></html>
