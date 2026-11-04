@@ -45,12 +45,18 @@ def view_list():
         return redirect(url_for("login"))
     return render_template("list.html", wanted=wanted_cars)
 
+@app.route("/add_officer", methods=["GET", "POST"])
+def add_officer():
+    if "user" not in session:
+        return redirect(url_for("login"))
+    if request.method == "POST":
+        return redirect(url_for("officers_page"))
+    return render_template("officers.html", officers=["admin"])
 @app.route("/officers")
 def officers_page():
     if "user" not in session:
         return redirect(url_for("login"))
     return render_template("officers.html", officers=["admin"])
-
 @app.route("/logout")
 def logout():
     session.clear()
