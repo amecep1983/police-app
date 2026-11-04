@@ -22,8 +22,8 @@ def home():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    if request.method == "POST":
-           if request.form.get("username","").strip().lower() == "admin" and request.form.get("password","").strip() == "1234":
+       if request.method == "POST":
+        if request.form.get("username","").strip().lower() == "admin" and request.form.get("password","").strip() == "1234":
             session["user"] = "admin"
             return redirect(url_for("home"))
         return render_template("login.html", error="Wrong login. Try admin / 1234")
