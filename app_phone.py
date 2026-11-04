@@ -52,7 +52,7 @@ def add_officer():
     if request.method == "POST":
         return redirect(url_for("officers_page"))
     return render_template("officers.html", officers=["admin"])
-@app.route("/officers")
+@app.route("/officers", methods=["GET", "POST"])
 def officers_page():
     if "user" not in session:
         return redirect(url_for("login"))
