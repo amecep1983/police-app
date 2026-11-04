@@ -7,7 +7,27 @@ app.secret_key = "ghana-police-123"
 wanted_cars = {
     "AS 1010-10": {"reason": "Wanted by Ashawo", "owner": "Krobea asante"},
 }
-officers_users = {"admin": "1234"}
+import json
+import os
+
+OFFICERS_FILE = "officers.json"
+
+def load_officers():
+    if os.path.exists(OFFICERS_FILE):
+        try:
+            with open(OFFICERS_FILE, "r") as f:
+                data = json.load(f)
+                if data:
+                    return data
+        except:
+            pass
+    return {"admin": "1234"}
+
+def save_officers():
+    with open(OFFICERS_FILE, "w") as f:
+        json.dump(officers_users, f)
+
+officers_users = load_officers()
 @app.route("/", methods=["GET", "POST"])
 def home():
     if "user" not in session:
@@ -23,6 +43,7 @@ def home():
 @app.route("/login", methods=["GET", "POST"])
 def login():
         if request.method == "POST":
+        officers_users.update(load_officers())
         u = request.form.get("username","").strip().lower()
         p = request.form.get("password","").strip()
         if u in officers_users and officers_users[u] == p:
@@ -58,6 +79,7 @@ def add_officer():
         new_pass = request.form.get("password")
         if new_user and new_pass:
             officers_users[new_user.strip().lower()] = new_pass.strip()
+            save_officers()
         return redirect(url_for("add_officer"))
     return render_template("officers.html", officers=list(officers_users.keys()))
 @app.route("/logout")
