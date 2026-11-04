@@ -72,6 +72,7 @@ def view_list():
 @app.route("/add_officer", methods=["GET", "POST"])
 @app.route("/officers", methods=["GET", "POST"])
 def add_officer():
+    officers_users.update(load_officers())
     if "user" not in session:
         return redirect(url_for("login"))
     if request.method == "POST":
