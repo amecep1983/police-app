@@ -56,6 +56,8 @@ def login():
 def add_car():
     if "user" not in session:
         return redirect(url_for("login"))
+    if session["user"] != "admin":
+        return redirect(url_for("home"))
     if request.method == "POST":
         plate = request.form.get("plate", "").strip().upper()
         wanted_cars[plate] = {"reason": request.form.get("reason"), "owner": request.form.get("owner")}
@@ -72,9 +74,10 @@ def view_list():
 @app.route("/add_officer", methods=["GET", "POST"])
 @app.route("/officers", methods=["GET", "POST"])
 def add_officer():
-    officers_users.update(load_officers())
     if "user" not in session:
         return redirect(url_for("login"))
+    if session["user"] != "admin":
+        return redirect(url_for("home"))
     if request.method == "POST":
         new_user = request.form.get("username")
         new_pass = request.form.get("password")
