@@ -42,14 +42,14 @@ def home():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-        if request.method == "POST":
-        officers_users.update(load_officers())
-        u = request.form.get("username","").strip().lower()
-        p = request.form.get("password","").strip()
+    officers_users.update(load_officers())
+    if request.method == "POST":
+        u = request.form.get("username", "").strip().lower()
+        p = request.form.get("password", "").strip()
         if u in officers_users and officers_users[u] == p:
             session["user"] = u
             return redirect(url_for("home"))
-        return render_template("login.html", error="Wrong login. Try Admin / 1234")
+    return render_template("login.html", error="Wrong login. Try Admin / 1234")
     return render_template("login.html")
 
 @app.route("/add", methods=["GET", "POST"])
