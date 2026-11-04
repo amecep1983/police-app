@@ -43,7 +43,7 @@ def add_car():
 def view_list():
     if "user" not in session:
         return redirect(url_for("login"))
-    return render_template("list.html", cars=wanted_cars)
+    return render_template("list.html", wanted=wanted_cars)
 
 @app.route("/officers")
 def officers_page():
